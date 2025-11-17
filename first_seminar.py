@@ -47,6 +47,7 @@ def serpentine(file_path):
         data = f.read()
         # Take first 64 bytes and read in zigzag order
         result = [data[zigzag[i]] for i in range(64)]
+        print (result)
         return result
 
 serpentine("input.jpg")
