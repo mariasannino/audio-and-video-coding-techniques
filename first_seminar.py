@@ -1,3 +1,5 @@
+import subprocess
+
 class ColorConverter: 
     def from_rgb_to_yuv(self, r, g, b):
         """Convert RGB color to YUV color space."""
@@ -16,3 +18,11 @@ class ColorConverter:
 converter = ColorConverter()
 print("rgb to YUV:", converter.from_rgb_to_yuv(255, 0, 0))  # Example 
 print("YUV to rgb:", converter.from_yuv_to_rgb(162, 94, 224))  # Example 
+
+# Method defined following: https://smarttech101.com/ffmpeg-compress-rescale-video-and-image
+def resize_imge(input_iamge, output_image, width, height):  
+
+    command = ['ffmpeg' '-i', '{input_iamge}', '-filter:v', f'scale={width}:{height}' '{output_image}']
+    subprocess.run(command)
+
+resize_imge('input.jpg', 'output.jpg', 800, 600) # Example usage
