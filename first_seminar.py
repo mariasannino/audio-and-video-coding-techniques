@@ -2,14 +2,12 @@ import subprocess
 
 class ColorConverter: 
     def from_rgb_to_yuv(self, r, g, b):
-        """Convert RGB color to YUV color space."""
         y = 0.299 * r + 0.587 * g + 0.114 * b
         u = -0.14713 * r - 0.28886 * g + 0.436 * b
         v = 0.615 * r - 0.51499 * g - 0.10001 * b
         return (y, u, v)
     
     def from_yuv_to_rgb(self, y, u, v):
-        """Convert YUV color to RGB color space."""
         r = y + 1.140 * (v - 128)
         g = y - 0.395 * (u - 128) - 0.581 * (v - 128)
         b = y + 2.032 * (u - 128)
@@ -30,7 +28,7 @@ def resize_image(input_image, output_image, width, height):
     ]
     subprocess.run(command)
 
-resize_image('input.jpg', 'output.jpg', 400, 300)  # Example usage
+resize_image('input.jpg', 'output_resize_image.jpg', 400, 300)  # Example usage
 #method defined following: https://yasoob.me/posts/understanding-and-writing-jpeg-decoder-in-python/
 
 def serpentine(file_path):
@@ -51,5 +49,35 @@ def serpentine(file_path):
         return result
 
 serpentine("input.jpg")
-    
-    
+#Method defined following: https://smarttech101.com/ffmpeg-compress-rescale-video-and-image
+def convert_bw_heavy_compression(input_image, output_image):
+    command = [
+        'ffmpeg',
+        '-y',
+        '-i', input_image,
+        '-vf', 'format=gray',  # Convert to B/W
+        '-qscale:v', '31',     # Maximum compression (worst quality)
+        output_image,
+    ]
+    subprocess.run(command)
+convert_bw_heavy_compression('input.jpg', 'output_bw_compress.jpg')
+
+def run_length_encode(data):
+    encoded = []
+    count = 1
+    for i in range(1, len(data)):
+        if data[i] == data[i-1]:
+            count += 1
+        else:
+            encoded.append((data[i-1], count))
+            count = 1
+    encoded.append((data[-1], count))
+    return encoded
+
+# Test with different data
+test1 = [1,1,1,2,2,3,4,4,4,4,5]
+test2 = "AAAABBBCCDAA"
+test3 = "11112222333111"
+print("Test 1:", run_length_encode(test1))
+print("Test 2:", run_length_encode(test2))
+print("Test 3:", run_length_encode(test3))
