@@ -4,16 +4,16 @@ services:
   api:
     build: .
     ports:
-      - "8000:8000"
+      - "8000:80"
     volumes:
-      - ./input_files:/app/input_files
-      - ./output_files:/app/output_files
+      - ./app/input_files:/code/input_files
+      - ./app/output_files:/code/output_files
     depends_on:
       - ffmpeg
 
   ffmpeg:
     image: jrottenberg/ffmpeg:latest
     volumes:
-      - ./input_files:/input
-      - ./output_files:/output
+      - ./app/input_files:/input
+      - ./app/output_files:/output
     command: ["tail", "-f", "/dev/null"]
