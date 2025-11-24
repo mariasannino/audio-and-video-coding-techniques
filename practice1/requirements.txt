@@ -1,2 +1,4 @@
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
+fastapi==0.104.1
+uvicorn==0.24.0
+numpy==1.24.3
+pydantic==2.5.0
