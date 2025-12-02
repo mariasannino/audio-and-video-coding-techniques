@@ -1,0 +1,18 @@
+cat > .gitignore << 'EOF'
+
+#no video files in GitHub:
+*.mp4
+
+# the environment 
+__pycache__/
+*.pyc
+venv/
+
+
+#  files go to GitHub:
+!*.py
+!requirements.txt
+!README.md
+!*.md
+!.gitignore
+EOF
