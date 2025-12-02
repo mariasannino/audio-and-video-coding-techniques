@@ -79,7 +79,7 @@ def task4():
         cmd += f"-map 0:v -map 0:a -map 1 -map 2 -map 3 -c copy {output}"
         os.system(cmd)
     
-    return f"Created: {output} (20s video + 4 audio tracks)<br><a href='/'>Back</a>"
+    return f"Created: {output} (20s video + 3 audio tracks)<br><a href='/'>Back</a>"
 
 @app.route('/task5')
 def task5():
