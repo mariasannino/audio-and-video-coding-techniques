@@ -86,7 +86,7 @@ Open your browser to: [http://localhost:5000](http://localhost:5000)
 
 ### Task 6: Show Macroblocks and Motion Vectors
 **Endpoint:** `/task6`
-- **Description:** Creates a video visualization showing macroblocks and motion vectors. Uses FFmpeg's `codecview` filter with `mv=pf+bf+bb`
+- **Description:** Creates a video visualization showing macroblocks and motion vectors. Uses FFmpeg's `codecview` filter with `mv=pf+bf+bb:qp=1`. We don't see the vectors.
 - **Output:** Creates `task6_macroblocks_full.mp4`
 
 ### Task 7: Show YUV Histogram

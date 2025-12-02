@@ -94,8 +94,10 @@ def task5():
 @app.route('/task6')
 def task6():
     output = f"temp_macroblocks.mp4"
-    os.system(f"ffmpeg -i {BBB_FULL} -vf codecview=mv=pf+bf+bb -c:a copy {output}")
-    return f"Created: {output}<br><a href='/'>Back</a>"
+  
+    os.system(f"ffmpeg -i {BBB_FULL} -vf codecview=mv=pf+bf+bb:qp=1 -c:a copy {output}")
+    
+    return f"Created: {output}<br>Motion vectors (red/green) + Macroblocks (colored blocks)<br><a href='/'>Back</a>"
 
 @app.route('/task7')
 def task7():
